@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#delete existing hex files, to avoid double header/signature during postbuild
+#delete existing hex and elf files, to avoid double header/signature during postbuild
 
 #input params
 COMPILED_HEX=$1
@@ -8,7 +8,8 @@ COMPILED_HEX=$1
 
 if [ -e "$COMPILED_HEX.hex" ]; then
     rm "$COMPILED_HEX.hex"
-    echo "$COMPILED_HEX.hex deleted"
+    rm "$COMPILED_HEX.elf"
+    echo "$COMPILED_HEX.hex and $COMPILED_HEX.elf deleted"
 fi
 
 #if [ -e "$COMPILED_HEX_UNSIGNED.hex" ]; then

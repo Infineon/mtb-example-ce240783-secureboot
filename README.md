@@ -1,6 +1,6 @@
 # PSOC&trade; Control MCU: Basic secure application
 
-This code example provides a step-by-step guide on how to sign a basic application, specifically mtb-example-ce240783-secureboot project, and enable the "secured boot" feature. The "secured boot" feature ensures that the BootROM verifies the application's authenticity before launching it. 
+This code example provides a step-by-step guide on how to sign a basic application, specifically mtb-example-ce240783-secureboot project, and enable the "secured boot" feature. The "secured boot" feature ensures that the BootROM verifies the application's authenticity before launching it.
 
 Additionally, this example can be used in conjunction with the Edge Protect Bootloader code example. When "secured boot" is enabled, the BootROM validates the Edge Protect Bootloader (EPB), Subsequently, the EPB verifies the authenticity of the application and initiates its launch.
 
@@ -52,7 +52,7 @@ Install a terminal emulator if you don't have one. Instructions in this document
 2. Login using your Infineon credentials.
 
 3. Download and install the **ModusToolbox&trade; Edge Protect Security Suite** from **Developer Center Launcher**.
-   
+
     > **Note:** The default installation directory of the **Edge Protect Security Suite** in Windows operating system is *C:/Users/`<USER>`/Infineon/Tools*.
 
 4. After installing the **Edge Protect Security Suite**, add the Edge Protect tools executable to the system PATH variable.
@@ -254,14 +254,14 @@ For more details, see the [ModusToolbox&trade; tools package user guide](https:/
 6. Confirm that the kit LED blinks at approximately 1 Hz.
 
 7. To enable "secured boot" in this code example, perform the following steps:
-      
+
    1. Update the user application *Makefile* and *postbuild.mk* file to enable secured boot.
 
    2. Provision the PSOC™ Control device with a BOOT_ONE_SLOT boot configuration.
 
-   
+
    - **Enabling post-build signing for this code example**
-   
+
      To enable the "secure boot" feature, it is necessary to sign the initial user application in accordance with the MCUboot standard, ensuring its compatibility and authenticity. To achieve this, you'll need to modify the user application makefile by setting the "SECURED_BOOT" flag to **TRUE**. By default, this flag is set as **FALSE**.
 
      Update SECURE_BOOT flag in the application makefile:
@@ -287,14 +287,14 @@ For more details, see the [ModusToolbox&trade; tools package user guide](https:/
 
      When the "SECURED_BOOT" flag is set, a post-build script is triggered, which appends the MCUBoot Header to the "mtb-example-ce240783-secureboot" image during the post-build stage, thereby preparing the image for secure boot during build.
 
-      
+
      > **Note:** The same key pair should be used during provision the device.
 
    - **Provisioning the PSOC™ Control device with BOOT_ONE_SLOT**
 
      The default configuration for the boot process is set to BOOT_SIMPLE_APP. However, to enable the "secure boot" flow, it is necessary to modify the boot_cfg_id value to BOOT_ONE_SLOT, as specified in the *policy_oem_provisioning.json* file. By doing so, the BootROM will only validate a single image, which must be the first user image (mtb-example-ce240783-secureboot) stored in the user flash area, ensuring a secure boot process.
 
-     Update the following parameters in the *policy/policy_oem_provisioning.json* file and follow the steps mentioned in the "Provisioning" section to provision the device again. 
+     Update the following parameters in the *policy/policy_oem_provisioning.json* file and follow the steps mentioned in the "Provisioning" section to provision the device again.
 
       ```
       "boot_cfg_id": {
@@ -321,14 +321,14 @@ For more details, see the [ModusToolbox&trade; tools package user guide](https:/
        ```
        edgeprotecttools -t psoc_c3 provision-device -p policy/policy_oem_provisioning.json --key keys/oem_private_key_0.pem
        ```
-   
-     After provisioning, BootROM validates the user application and launches successfully and "PSOC Control MCU Secure Boot Application Example" is displayed on the UART terminal. 
+
+     After provisioning, BootROM validates the user application and launches successfully and "PSOC Control MCU Secure Boot Application Example" is displayed on the UART terminal.
 
      **Figure 2. Terminal output on program start up**
 
      ![](images/terminal-hello-world-secure-boot-enabled.png)
 
-     > **Note:** To restore the device to its default configuration for executing other code examples or projects, re-provision the device with the default policy_oem_provisioning.json policy. 
+     > **Note:** To restore the device to its default configuration for executing other code examples or projects, re-provision the device with the default policy_oem_provisioning.json policy.
 
 
 
@@ -361,7 +361,7 @@ When secured boot is enabled, the application must undergo a signing process usi
 
 ### How is this code example different from **PSOC&trade; Control MCU: Hello world using PDL** ?
 
-1. Additional configurable post-build step in the *Makefile* of 'mtb-example-ce240783-secureboot' to make it compatible for BootROM and **Edge Protect Bootloader**. 
+1. Additional configurable post-build step in the *Makefile* of 'mtb-example-ce240783-secureboot' to make it compatible for BootROM and **Edge Protect Bootloader**.
 2. The Edgeprotecttools commands used in the post-build of the 'mtb-example-ce240783-secureboot' may contain additional arguments for compatibility  with BootROM and **Edge Protect Bootloader**.
 
 For more details, see the "Design and implementation" section of the PSOC&trade; Control MCU: Hello world using HAL code example.
@@ -386,7 +386,7 @@ Resources  | Links
 -----------|----------------------------------
 Application notes  | [AN238329](https://www.infineon.com/cms/en/product/microcontroller/32-bit-psoc-arm-cortex-microcontroller/32-bit-psoc-control-arm-cortex-m33-mcu/psoc-control-c3m/#!documents) – Getting started with PSOC&trade; Control C3 MCU on ModusToolbox&trade; software <br> AN240106 - Getting started with PSOC&trade; Control C3 security
 Code examples  | [Using ModusToolbox&trade;](https://github.com/Infineon/Code-Examples-for-ModusToolbox-Software) on GitHub
-Device documentation | PSOC&trade; Control C3 MCU datasheet 
+Device documentation | PSOC&trade; Control C3 MCU datasheet
 Development kits | Select your kits from the [Evaluation board finder](https://www.infineon.com/cms/en/design-support/finder-selection-tools/product-finder/evaluation-board).
 Libraries on GitHub  | [mtb-pdl-cat1](https://github.com/Infineon/mtb-pdl-cat1) – Peripheral Driver Library (PDL)  <br> [mtb-hal-cat1](https://github.com/Infineon/mtb-hal-cat1) – Hardware Abstraction Layer (HAL) Library <br> [retarget-io](https://github.com/Infineon/retarget-io) – Utility library to retarget STDIO messages to a UART port
 Tools  | [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) – ModusToolbox&trade; software is a collection of easy-to-use libraries and tools enabling rapid development with Infineon MCUs for applications ranging from wireless and cloud-connected systems, edge AI/ML, embedded sense and control, to wired USB connectivity using PSOC&trade; Industrial/IoT MCUs, AIROC&trade; Wi-Fi and Bluetooth&reg; connectivity devices. <br /> [PSOC&trade; Creator](https://www.infineon.com/cms/en/design-support/tools/sdk/psoc-software/psoc-creator/) – IDE for PSOC&trade; and FM0+ MCU development
@@ -407,6 +407,7 @@ Document title: *CE240783* - *PSOC&trade; Control MCU: Basic secure application*
  Version | Description of change
  ------- | ---------------------
  1.0.0   | New code example
+ 1.0.1   | Fixed an issue with subsequent builds
 
 <br>
 
